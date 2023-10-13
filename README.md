@@ -69,4 +69,11 @@ O projeto é um monorepo dividido em algumas pastas importantes:
 * **ksqldb** Possui os scripts SQL que o KsqlDB vai utilizar para processar as streams e consolidar os dados de fluxo de caixa
 * **nginx** Possui as configurações de proxy reverso e balanceamento de carga do nginx
 * **tests** Possui os tests unitários da aplicação
+
+## Rodando o projeto
+
+* Instale o docker em sua máquina
+* Rode o comando $ docker compose up -d
+* Inicialize os indexes $ docker compose run console create-indexes
+* Inicialize os indexes $ docker compose run console create-user nome email senha
   

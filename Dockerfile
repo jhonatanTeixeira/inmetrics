@@ -1,10 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
+ARG APP_NAME
+
 WORKDIR /app
 
 COPY . .
 
-RUN dotnet restore && dotnet publish -c Release -o publish
+RUN cd microservices/$APP_NAME && dotnet restore && dotnet publish -c Release -o /app/publish
 
 # Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0

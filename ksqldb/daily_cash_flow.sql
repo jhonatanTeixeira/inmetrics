@@ -4,7 +4,7 @@ CREATE STREAM daily_cash_flow_stream (
   Amount DECIMAL(10,2),
   Date TIMESTAMP
 ) 
-WITH (KAFKA_TOPIC = 'transaction-created', VALUE_FORMAT = 'JSON');
+WITH (KAFKA_TOPIC = 'transaction-created', VALUE_FORMAT = 'JSON', PARTITIONS=1);
 
 CREATE TABLE IF NOT EXISTS daily_cash_flow_table 
 WITH(format='JSON')

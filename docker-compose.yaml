@@ -94,10 +94,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP_NAME: Users
     depends_on:
       - mongo-users
     environment:
-      APP_NAME: Users
       MongoConnectionString: mongodb://mongo-users:27017
       MongoDatabase: users
     restart: on-failure
@@ -108,10 +109,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP_NAME: Transactions
     depends_on:
       - mongo-transactions
     environment:
-      APP_NAME: Transactions
       MongoConnectionString: mongodb://mongo-transactions:27017
       MongoDatabase: transactions
       KafkaServers: kafka:9092
@@ -123,10 +125,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP_NAME: DailyCashFlow
     depends_on:
       - mongo-dailycashflow
     environment:
-      APP_NAME: DailyCashFlow
       MongoConnectionString: mongodb://mongo-dailycashflow:27017
       MongoDatabase: dailycashflow
     restart: on-failure
@@ -137,10 +140,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        APP_NAME: DailyCashFlowConsumer
     depends_on:
       - mongo-dailycashflow
     environment:
-      APP_NAME: DailyCashFlowConsumer
       MongoConnectionString: mongodb://mongo-dailycashflow:27017
       MongoDatabase: dailycashflow
       KafkaServers: kafka:9092

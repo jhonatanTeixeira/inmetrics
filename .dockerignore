@@ -1,5 +1,6 @@
-**/vemv
+**/venv
 **/obj
 **/bin
 publish
+**/publish
 .git
