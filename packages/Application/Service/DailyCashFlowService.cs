@@ -12,6 +12,11 @@ namespace Application.Service
         public override async Task<DailyCashFlow> Save(DailyCashFlow document)
         {
             var dcf = await Repository.FindOne(d => d.UserId == document.UserId && d.Date == document.Date);
+            var previowsDcf = await Repository.FindOne(d => d.UserId == document.UserId && d.Date == document.Date.AddDays(-1));
+
+            if (previowsDcf != null) {
+                document.Amount += previowsDcf.Amount;
+            }
 
             if (dcf == null) {
                 return await Repository.Save(document);

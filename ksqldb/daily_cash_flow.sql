@@ -13,5 +13,4 @@ WITH(format='JSON')
         SUM(Amount) AS Total,
         CAST(Date as DATE) as Date
     FROM daily_cash_flow_stream
-    WINDOW TUMBLING (SIZE 1 DAY)
     GROUP BY UserId, CAST(Date as DATE);

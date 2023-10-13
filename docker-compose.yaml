@@ -33,6 +33,8 @@ services:
       - kafka
     ports:
       - "8088:8088"
+    volumes:
+      - ./ksqldb/daily_cash_flow.sql:/etc/ksql/daily_cash_flow.sql
     environment:
       KSQL_CONFIG_DIR: "/etc/ksql"
       KSQL_BOOTSTRAP_SERVERS: "kafka:9092"
@@ -42,6 +44,7 @@ services:
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+      KSQL_KSQL_QUERIES_FILE: /etc/ksql/daily_cash_flow.sql
 
   control-center:
     image: confluentinc/cp-enterprise-control-center:7.5.1
@@ -144,7 +147,7 @@ services:
       ThreadsPerCosnumer: 1
     restart: on-failure
     deploy:
-      replicas: 0
+      replicas: 1
 
   console:
     build:

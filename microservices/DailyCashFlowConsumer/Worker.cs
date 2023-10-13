@@ -1,18 +1,23 @@
+using Application.Service;
 using Confluent.Kafka;
 using DailyCashFlowConsumer.Dto;
+using Domain.Document;
 
 namespace DailyCashFlowConsumer;
 
 public class Worker : BackgroundService
 {
-    private readonly ILogger<Worker> _logger;
+    private readonly ILogger<Worker> Logger;
 
     private readonly IConsumer<CashFlowKey, CashFlowValue> Consumer;
 
-    public Worker(ILogger<Worker> logger, IConsumer<CashFlowKey, CashFlowValue> consumer)
+    private readonly IUserResourceCrudService<DailyCashFlow> Service;
+
+    public Worker(ILogger<Worker> logger, IConsumer<CashFlowKey, CashFlowValue> consumer, IUserResourceCrudService<DailyCashFlow> service)
     {
-        _logger = logger;
+        Logger = logger;
         Consumer = consumer;
+        Service = service;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -23,9 +28,13 @@ public class Worker : BackgroundService
 
             var result = Consumer.Consume(stoppingToken);
 
-            Console.WriteLine(result.Message.Value);
+            Logger.LogInformation("Received Daily cash flow for Id {O}", result.Key);
 
-            await Task.Delay(1000, stoppingToken);
+            var document = await Service.Save(new DailyCashFlow(result.Key.UserId, result.Key.Date, result.Value.Total));
+
+            Logger.LogInformation("Daily cash flow id {ID} persisted Amount {A}", result.Key, document.Amount);
+
+            await Task.Delay(100, stoppingToken);
         }
     }
 }

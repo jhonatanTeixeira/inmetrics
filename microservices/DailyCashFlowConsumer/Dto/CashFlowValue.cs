@@ -10,6 +10,5 @@ namespace DailyCashFlowConsumer.Dto
     {
         [JsonPropertyName("TOTAL")]
         public decimal Total { get; set; }
-
     }
 }

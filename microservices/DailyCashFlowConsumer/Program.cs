@@ -11,6 +11,10 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddLogging();
 
         services.Configure<ConsumerConfig>(context.Configuration.GetSection("KafkaConsumer"));
+        services.AddMongo(
+            context.Configuration.GetValue<string>("MongoConnectionString"),
+            context.Configuration.GetValue<string>("MongoDatabase")
+        );
         services.AddKafkaConsumer<CashFlowKey, CashFlowValue>();
     })
     .Build();
