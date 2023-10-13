@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packages", "packages", "{7892CE98-F5DD-4D3F-9B96-5D0905087BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "packages\Domain\Domain.csproj", "{E75CF4BA-2537-428B-90BC-E146A5A3F0B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "packages\Application\Application.csproj", "{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "packages\Infrastructure\Infrastructure.csproj", "{41626E22-C14B-4EF7-A36F-BAA9488A70F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservices", "{4E129F13-011A-488F-8096-44E3345D2AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users", "microservices\Users\Users.csproj", "{62A22467-FCE2-4CE3-A490-8A85D07324F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions", "microservices\Transactions\Transactions.csproj", "{AFFEC4C6-A390-4CF6-B255-06666516044C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlow", "microservices\DailyCashFlow\DailyCashFlow.csproj", "{26C01378-AEC3-4618-A123-8698BFB79A98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41626E22-C14B-4EF7-A36F-BAA9488A70F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41626E22-C14B-4EF7-A36F-BAA9488A70F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41626E22-C14B-4EF7-A36F-BAA9488A70F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41626E22-C14B-4EF7-A36F-BAA9488A70F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62A22467-FCE2-4CE3-A490-8A85D07324F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62A22467-FCE2-4CE3-A490-8A85D07324F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62A22467-FCE2-4CE3-A490-8A85D07324F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62A22467-FCE2-4CE3-A490-8A85D07324F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFFEC4C6-A390-4CF6-B255-06666516044C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFFEC4C6-A390-4CF6-B255-06666516044C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFFEC4C6-A390-4CF6-B255-06666516044C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFFEC4C6-A390-4CF6-B255-06666516044C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26C01378-AEC3-4618-A123-8698BFB79A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C01378-AEC3-4618-A123-8698BFB79A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C01378-AEC3-4618-A123-8698BFB79A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C01378-AEC3-4618-A123-8698BFB79A98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3} = {7892CE98-F5DD-4D3F-9B96-5D0905087BB5}
+		{F4C5C858-D8CD-4D60-9D5B-DA1A5BFA646C} = {7892CE98-F5DD-4D3F-9B96-5D0905087BB5}
+		{41626E22-C14B-4EF7-A36F-BAA9488A70F1} = {7892CE98-F5DD-4D3F-9B96-5D0905087BB5}
+		{62A22467-FCE2-4CE3-A490-8A85D07324F8} = {4E129F13-011A-488F-8096-44E3345D2AFB}
+		{AFFEC4C6-A390-4CF6-B255-06666516044C} = {4E129F13-011A-488F-8096-44E3345D2AFB}
+		{26C01378-AEC3-4618-A123-8698BFB79A98} = {4E129F13-011A-488F-8096-44E3345D2AFB}
+	EndGlobalSection
+EndGlobal
