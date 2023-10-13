@@ -8,6 +8,7 @@ using Infrastructure.Serializer;
 using Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
@@ -42,6 +43,25 @@ namespace Infrastructure.Extension
                 .SetValueSerializer(new KafkaJsonSerializer<T>());
 
             services.AddSingleton(producerBuilder.Build());
+        }
+
+        public static void AddKafkaConsumer<TKey, TData>(this IServiceCollection services)
+        {
+            services.AddSingleton(p => {
+                var config = p.GetRequiredService<IOptions<ConsumerConfig>>();
+
+                var consumerBuilder = new ConsumerBuilder<TKey, TData>(config.Value);
+
+                if (typeof(TKey).IsClass) {
+                    consumerBuilder.SetKeyDeserializer(new KafkaJsonSerializer<TKey>());
+                }
+
+                if (typeof(TData).IsClass) {
+                    consumerBuilder.SetValueDeserializer(new KafkaJsonSerializer<TData>());
+                }
+
+                return consumerBuilder.Build();
+            });
         }
 
         public static void AddTransactions(

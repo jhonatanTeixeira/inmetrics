@@ -130,6 +130,22 @@ services:
     deploy:
       replicas: 3
 
+  dailycashflow-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo-dailycashflow
+    environment:
+      APP_NAME: DailyCashFlowConsumer
+      MongoConnectionString: mongodb://mongo-dailycashflow:27017
+      MongoDatabase: dailycashflow
+      KafkaServers: kafka:9092
+      ThreadsPerCosnumer: 1
+    restart: on-failure
+    deploy:
+      replicas: 0
+
   console:
     build:
       context: ./console

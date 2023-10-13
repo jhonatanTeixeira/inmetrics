@@ -1,0 +1,225 @@
+[
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "pymongo",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "task",
+        "importPath": "invoke",
+        "description": "invoke",
+        "isExtraImport": true,
+        "detail": "invoke",
+        "documentation": {}
+    },
+    {
+        "label": "mongo",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mongo",
+        "description": "mongo",
+        "detail": "mongo",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "bcrypt",
+        "description": "bcrypt",
+        "detail": "bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "MongoContext",
+        "kind": 6,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "class MongoContext:\n    url: str\n    database: str\n    collection: str\ndef get_database(context: MongoContext):\n    client = pymongo.MongoClient(context.url)\n    return client[context.database]\ndef get_collection(context: MongoContext):\n    return get_database(context)[context.collection]\ndef save(context: MongoContext, document):",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "get_database",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def get_database(context: MongoContext):\n    client = pymongo.MongoClient(context.url)\n    return client[context.database]\ndef get_collection(context: MongoContext):\n    return get_database(context)[context.collection]\ndef save(context: MongoContext, document):\n    return get_collection(context).insert_one(document)\ndef update(context: MongoContext, filter, data):\n    return get_collection(context).update_one(filter, {\"$set\": data})\ndef find_one(context: MongoContext, filter):",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "get_collection",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def get_collection(context: MongoContext):\n    return get_database(context)[context.collection]\ndef save(context: MongoContext, document):\n    return get_collection(context).insert_one(document)\ndef update(context: MongoContext, filter, data):\n    return get_collection(context).update_one(filter, {\"$set\": data})\ndef find_one(context: MongoContext, filter):\n    return get_collection(context).find_one(filter)\ndef add_index(context: MongoContext, index_names: list[str], unique=False):\n    get_collection(context).create_index([(index, pymongo.ASCENDING) for index in index_names], unique=unique)",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "save",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def save(context: MongoContext, document):\n    return get_collection(context).insert_one(document)\ndef update(context: MongoContext, filter, data):\n    return get_collection(context).update_one(filter, {\"$set\": data})\ndef find_one(context: MongoContext, filter):\n    return get_collection(context).find_one(filter)\ndef add_index(context: MongoContext, index_names: list[str], unique=False):\n    get_collection(context).create_index([(index, pymongo.ASCENDING) for index in index_names], unique=unique)",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "update",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def update(context: MongoContext, filter, data):\n    return get_collection(context).update_one(filter, {\"$set\": data})\ndef find_one(context: MongoContext, filter):\n    return get_collection(context).find_one(filter)\ndef add_index(context: MongoContext, index_names: list[str], unique=False):\n    get_collection(context).create_index([(index, pymongo.ASCENDING) for index in index_names], unique=unique)",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "find_one",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def find_one(context: MongoContext, filter):\n    return get_collection(context).find_one(filter)\ndef add_index(context: MongoContext, index_names: list[str], unique=False):\n    get_collection(context).create_index([(index, pymongo.ASCENDING) for index in index_names], unique=unique)",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "add_index",
+        "kind": 2,
+        "importPath": "console.mongo",
+        "description": "console.mongo",
+        "peekOfCode": "def add_index(context: MongoContext, index_names: list[str], unique=False):\n    get_collection(context).create_index([(index, pymongo.ASCENDING) for index in index_names], unique=unique)",
+        "detail": "console.mongo",
+        "documentation": {}
+    },
+    {
+        "label": "create_user",
+        "kind": 2,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "def create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,\n        \"Email\": email,\n        \"Password\": bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(11, b\"2a\")).decode('utf-8'),\n    }\n    print(mongo.save(context, user).inserted_id)\n@task\ndef update_user_password(c, email, password):",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "update_user_password",
+        "kind": 2,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "def update_user_password(c, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    data = {\"Password\": bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(11, b\"2a\")).decode('utf-8')}\n    print(mongo.update(context, {\"Email\": email}, data).modified_count)\n@task\ndef create_indexes(c):\n    users_context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    transactions_context = mongo.MongoContext(transactions_mongo_url, transactions_database, transactions_collection)\n    dcf_context = mongo.MongoContext(daily_cash_flow_mongo_url, daily_cash_flow_database, daily_cash_flow_collection)\n    mongo.add_index(users_context, ['Email'], unique=True)",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "create_indexes",
+        "kind": 2,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "def create_indexes(c):\n    users_context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    transactions_context = mongo.MongoContext(transactions_mongo_url, transactions_database, transactions_collection)\n    dcf_context = mongo.MongoContext(daily_cash_flow_mongo_url, daily_cash_flow_database, daily_cash_flow_collection)\n    mongo.add_index(users_context, ['Email'], unique=True)\n    mongo.add_index(transactions_context, ['UserId'])\n    mongo.add_index(dcf_context, ['UserId'])",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "users_mongo_url",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "users_mongo_url = os.getenv('USERS_MONGO_URL') or 'mongodb://localhost:27017'\nusers_database = os.getenv('USERS_DATABASE') or 'users'\nusers_collection = os.getenv('USERS_COLLECTION') or 'users'\ntransactions_mongo_url = os.getenv('TRANSACTIONS_MONGO_URL') or 'mongodb://localhost:27017'\ntransactions_database = os.getenv('TRANSACTIONS_DATABASE') or 'transactions'\ntransactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "users_database",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "users_database = os.getenv('USERS_DATABASE') or 'users'\nusers_collection = os.getenv('USERS_COLLECTION') or 'users'\ntransactions_mongo_url = os.getenv('TRANSACTIONS_MONGO_URL') or 'mongodb://localhost:27017'\ntransactions_database = os.getenv('TRANSACTIONS_DATABASE') or 'transactions'\ntransactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "users_collection",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "users_collection = os.getenv('USERS_COLLECTION') or 'users'\ntransactions_mongo_url = os.getenv('TRANSACTIONS_MONGO_URL') or 'mongodb://localhost:27017'\ntransactions_database = os.getenv('TRANSACTIONS_DATABASE') or 'transactions'\ntransactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "transactions_mongo_url",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "transactions_mongo_url = os.getenv('TRANSACTIONS_MONGO_URL') or 'mongodb://localhost:27017'\ntransactions_database = os.getenv('TRANSACTIONS_DATABASE') or 'transactions'\ntransactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "transactions_database",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "transactions_database = os.getenv('TRANSACTIONS_DATABASE') or 'transactions'\ntransactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "transactions_collection",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "transactions_collection = os.getenv('TRANSACTIONS_COLLECTION') or 'transactions'\ndaily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,\n        \"Email\": email,",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "daily_cash_flow_mongo_url",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "daily_cash_flow_mongo_url = os.getenv('DAILY_CASH_FLOW_MONGO_URL') or 'mongodb://localhost:27017'\ndaily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,\n        \"Email\": email,\n        \"Password\": bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(11, b\"2a\")).decode('utf-8'),",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "daily_cash_flow_database",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "daily_cash_flow_database = os.getenv('DAILY_CASH_FLOW_DATABASE') or 'daily_cash_flow'\ndaily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,\n        \"Email\": email,\n        \"Password\": bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(11, b\"2a\")).decode('utf-8'),\n    }",
+        "detail": "console.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "daily_cash_flow_collection",
+        "kind": 5,
+        "importPath": "console.tasks",
+        "description": "console.tasks",
+        "peekOfCode": "daily_cash_flow_collection = os.getenv('DAILY_CASH_FLOW_COLLECTION') or 'daily_cash_flow'\n@task\ndef create_user(c, name, email, password):\n    context = mongo.MongoContext(users_mongo_url, users_database, users_collection)\n    user = {\n        \"Name\": name,\n        \"Email\": email,\n        \"Password\": bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(11, b\"2a\")).decode('utf-8'),\n    }\n    print(mongo.save(context, user).inserted_id)",
+        "detail": "console.tasks",
+        "documentation": {}
+    }
+]
