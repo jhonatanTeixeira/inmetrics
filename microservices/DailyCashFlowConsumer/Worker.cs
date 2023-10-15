@@ -22,17 +22,22 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        Logger.LogInformation("Consumer stating");
+        Consumer.Subscribe("DAILY_CASH_FLOW_TABLE");
+        Logger.LogInformation("Consumer subscribed");
+
         while (!stoppingToken.IsCancellationRequested)
         {
-            Consumer.Subscribe("DAILY_CASH_FLOW_TABLE");
+            Logger.LogInformation("waiting for the next message");
+            var message = Consumer.Consume(stoppingToken).Message;
 
-            var result = Consumer.Consume(stoppingToken);
+            Logger.LogInformation("Received Daily cash flow for Id {U} - {D}", message.Key.UserId, message.Key.Date);
 
-            Logger.LogInformation("Received Daily cash flow for Id {O}", result.Key);
+            var document = await Service.Save(new DailyCashFlow(message.Key.UserId, message.Key.Date, message.Value.Total));
 
-            var document = await Service.Save(new DailyCashFlow(result.Key.UserId, result.Key.Date, result.Value.Total));
+            Consumer.Commit();
 
-            Logger.LogInformation("Daily cash flow id {ID} persisted Amount {A}", result.Key, document.Amount);
+            Logger.LogInformation("Daily cash flow id {U} - {D} persisted Amount {A}", message.Key.UserId, message.Key.Date, document.Amount);
 
             await Task.Delay(100, stoppingToken);
         }

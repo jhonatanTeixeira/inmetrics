@@ -149,7 +149,7 @@ services:
     environment:
       MongoConnectionString: mongodb://mongo-dailycashflow:27017
       MongoDatabase: dailycashflow
-      KafkaServers: kafka:9092
+      KafkaConsumer__BootstrapServers: kafka:9092
       ThreadsPerCosnumer: 1
     restart: on-failure
     deploy:

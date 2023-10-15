@@ -1,3 +1,4 @@
+using Infrastructure.Serializer;
 using Infrastructure.Extension;
 using Infrastructure.Middleware;
 
@@ -7,7 +8,9 @@ var configuration = builder.Configuration;
 builder.Logging.AddConsole();
 // builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>{
+    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+});
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddMongo(configuration.GetValue<string>("MongoConnectionString"), configuration.GetValue<string>("MongoDatabase"));
