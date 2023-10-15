@@ -76,4 +76,16 @@ O projeto é um monorepo dividido em algumas pastas importantes:
 * Rode o comando $ docker compose up -d
 * Inicialize os indexes $ docker compose run console create-indexes
 * Inicialize os indexes $ docker compose run console create-user nome email senha
+* O projeto está configurado para rodar na porta 80, portanto deixe essa porta livre
+* acesse localhost/users/swagger para acessar a api de usuários, realize o login na rota /login
+* Utilize o token gerado para acessar as rotas da api de transactions localhost/transactions/swagger (existe um botão authorize no canto superior direito, use o token gerado)
+* para se certificar que os dados estão sendo gerados no kafka, acesso o control center em  localhost:9021, observe os topicos transaction_created e DAILY_CASH_FLOW_TABLE
+* Acesse a api de daily cash flow em localhost/dailycashflow para listar o caixa consolidado diário
+
+## Débitos técnicos
+
+* Pouca cobertura de código, foi feita apenas um teste unitário para mostrar o uso do conceito
+* O serviço de consumo de dados consolidados está faltando uma melhor abstração do consumo
+* Não foi possível manter a camada de domain 100% pura, pois o driver de mongodb do .net é intrusivo e não permite mapeamento externo, todavia foi usado uma tipagem de string no id facilitando a portabilidade um pouco para outros frameworks, é possível também usa-los como DTO em cahamads de internas HTTP
+* Não foi usada uma camada de DTO, o layer de transporte é a própria camada de domínio, algumas pessoa podem achar isso ruim, porém eu acho mais produtivo, seria interessante se o framework de serialização permitisse mapeamento externo para mater as classes puras, isso também acaba dificultando melhor documentação no swagger
   
