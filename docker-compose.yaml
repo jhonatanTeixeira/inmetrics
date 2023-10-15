@@ -103,7 +103,7 @@ services:
       MongoDatabase: users
     restart: on-failure
     deploy:
-      replicas: 3
+      replicas: 1
 
   transactions-api:
     build:
@@ -113,13 +113,14 @@ services:
         APP_NAME: Transactions
     depends_on:
       - mongo-transactions
+      - kafka
     environment:
       MongoConnectionString: mongodb://mongo-transactions:27017
       MongoDatabase: transactions
       KafkaServers: kafka:9092
     restart: on-failure
     deploy:
-      replicas: 3
+      replicas: 1
 
   dailycashflow-api:
     build:
@@ -144,6 +145,7 @@ services:
         APP_NAME: DailyCashFlowConsumer
     depends_on:
       - mongo-dailycashflow
+      - kafka
     environment:
       MongoConnectionString: mongodb://mongo-dailycashflow:27017
       MongoDatabase: dailycashflow
@@ -168,6 +170,7 @@ services:
       - ./nginx/nginx-proxy.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
+    command: [nginx-debug, '-g', 'daemon off;']
     depends_on:
       - users-api
       - transactions-api
