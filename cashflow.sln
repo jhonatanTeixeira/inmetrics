@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlow", "microservi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCashFlowConsumer", "microservices\DailyCashFlowConsumer\DailyCashFlowConsumer.csproj", "{DFCE6A10-0505-49FF-8368-BB7395B427DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{D6124E97-354D-4656-80A5-7FD19E55318D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{DFCE6A10-0505-49FF-8368-BB7395B427DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFCE6A10-0505-49FF-8368-BB7395B427DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFCE6A10-0505-49FF-8368-BB7395B427DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6124E97-354D-4656-80A5-7FD19E55318D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6124E97-354D-4656-80A5-7FD19E55318D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6124E97-354D-4656-80A5-7FD19E55318D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6124E97-354D-4656-80A5-7FD19E55318D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E75CF4BA-2537-428B-90BC-E146A5A3F0B3} = {7892CE98-F5DD-4D3F-9B96-5D0905087BB5}
