@@ -2,3 +2,6 @@ bin
 obj
 publish
 __pycache__
+coverage.opencover.xml
+coverage-report
+TestResults
