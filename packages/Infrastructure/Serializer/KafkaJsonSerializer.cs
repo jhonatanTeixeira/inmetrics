@@ -12,8 +12,6 @@ namespace Infrastructure.Serializer
             options.Converters.Add(new DateToTimestampConverter());
             options.Converters.Add(new DateOnlyTimeStampConverter());
 
-            Console.WriteLine(Encoding.UTF8.GetString(data));
-
             return JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(data), options);
         }
 

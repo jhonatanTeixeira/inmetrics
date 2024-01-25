@@ -5,3 +5,5 @@ __pycache__
 coverage.opencover.xml
 coverage-report
 TestResults
+otel/data/signoz/*
+!otel/data/signoz/.gitkeep
